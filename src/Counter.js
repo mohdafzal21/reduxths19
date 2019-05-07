@@ -1,22 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux'
-
-const Counter = ({count ,dispatch})=> (
+import { bindActionCreators } from 'redux';
+import {incrementCounter ,decrementCounter } from './action'
+const Counter = ({count,name ,incrementCounter,decrementCounter})=> (
     <div>
+        <p>{name}</p>
         <h1>Count  : {count}</h1>
     <h1>Increment</h1>
-    <button onClick={()=>dispatch({
-        type: 'INCREMENT_COUNT'
-    })}>Increment</button>
+    <button onClick={incrementCounter}>Increment</button>
     <h1>Decrement</h1>
-    <button onClick={()=>dispatch({
-        type:'DECREMENT_COUNT'
-    })}>Decrement</button>
+    <button onClick={decrementCounter}>Decrement</button>
     </div>
 )
 
 const mapStateToProps = state=> ({
-    count : state.toggleState.count
+    count : state.toggleState.count,
+    name : state.toggleState.name
 })
 
-export default connect(mapStateToProps)(Counter) 
+const mapDispatchToProps = dispatch => bindActionCreators({
+    incrementCounter, 
+    decrementCounter 
+},dispatch)
+
+export default connect(mapStateToProps,mapDispatchToProps)(Counter) 

@@ -12,7 +12,7 @@ const Toggle =({toggleMessageShow,toggleMessage})=>(
 )
 
 const mapStateToProps = state =>({
-    toggleMessageShow : state.toggleState.toggleMessageShow
+    toggleMessageShow : state.toggle.toggleMessageShow
 })
 
 const mapDispatchToProps = dispatch=> bindActionCreators({

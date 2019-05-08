@@ -2,9 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
 import {incrementCounter ,decrementCounter } from './action'
-const Counter = ({count,name ,incrementCounter,decrementCounter})=> (
+const Counter = ({count ,incrementCounter,decrementCounter})=> (
     <div>
-        <p>{name}</p>
         <h1>Count  : {count}</h1>
     <h1>Increment</h1>
     <button onClick={incrementCounter}>Increment</button>
@@ -14,8 +13,7 @@ const Counter = ({count,name ,incrementCounter,decrementCounter})=> (
 )
 
 const mapStateToProps = state=> ({
-    count : state.toggleState.count,
-    name : state.toggleState.name
+    count : state.counter.count,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

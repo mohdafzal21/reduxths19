@@ -1,9 +1,11 @@
 import {combineReducers} from 'redux'
 
-import toggleState from './reducer'
+import toggle from './Toggle/reducer'
+import counter from './Counter/reducer'
 
 const rootReducer = combineReducers({
-    toggleState
+    toggle,
+    counter
 })
 
 export default rootReducer 

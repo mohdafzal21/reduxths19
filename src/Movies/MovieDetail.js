@@ -28,7 +28,6 @@ class MovieDetail extends Component {
                    <Poster src={movie.images.poster}/>
                    <Moveup>
                  <h2> {movie.title}</h2>
-                 <ReactPlayer url={movie.trailer}/>
                  </Moveup>
                </MovieInfo>
                </MovieWrapper>

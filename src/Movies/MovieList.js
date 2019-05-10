@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import Movie from './Movie'
 import styled from 'styled-components'
-class MovieList extends Component {
-    state = { 
-        movies : []
-     }
+import {getMovies} from './action'
+import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux';
 
-   async  componentDidMount(){
-         const res = await axios.get('https://tv-v2.api-fetch.website/movies/3?sort=trending&order=1&genre=documentary')
-         this.setState ({
-             movies : res.data
-         })
+class MovieList extends Component {
+   
+
+    componentDidMount(){
+        this.props.getMovies()
      }
     render() { 
-        const {movies} = this.state 
+        const {movies} = this.props 
         return ( 
             <MovieGrid>
           {movies.map((movie)=> <Movie key={movie._id} movie={movie} /> )}
@@ -22,8 +20,17 @@ class MovieList extends Component {
           );
     }
 }
+
+const mapStateToProps = state => ({
+  movies : state.moviestate.movies
+})
  
-export default MovieList;
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getMovies
+},dispatch)
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(MovieList);
 
 const MovieGrid = styled.div`
 display : grid;
